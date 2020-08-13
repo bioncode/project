@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const session = require("express-session");
 const bcrypt = require("bcrypt");
-/* For testing purposes */
+
 // const pool = require("./testdb.js");
 const request = require("request");
 const pool = require("./dbPool.js");
