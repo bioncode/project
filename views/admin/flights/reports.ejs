@@ -1,0 +1,23 @@
+<%- include('../partials/header.ejs') %>
+
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Flights Reports</h1>
+        <!-- <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Administration Page </li>
+                    </ol> -->
+        <div id="content">
+
+            <%- include('report4.ejs', { data: report4, dtm: dtm }) %>
+
+            <%- include('report1.ejs', { data: report1 }) %>
+            
+            <%- include('report2.ejs', { data: report2 }) %>
+
+            <%- include('report3.ejs', { data: report3 }) %>
+
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>

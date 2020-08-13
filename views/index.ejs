@@ -1,0 +1,62 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/login.ejs') %>
+<section class="section mb-5" id="main">
+            <div class="container">
+                <div id="car" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="img-fluid" src="/img/city-view.jpg">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="img-fluid" src="/img/ocean-view.jpg">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="img-fluid" src="/img/vegas-view.jpg">
+                        </div>
+                    </div>
+                    <a href="#car" class="carousel-control-prev" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                        <span class="sr-only">previous</span>
+                    </a>
+                    <a href="#car" class="carousel-control-next" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                        <span class="sr-only">next</span>
+                    </a>
+                </div>
+                <h3 class="index-header text-md text-center my-4">Welcome to your next adventure! How many we help you?</h3>
+                <hr>
+                <div class="row mt-2">
+                    <div class="col-md-4 mt-2">
+                        <div class="card">
+                            <div class="card-header px-0 py-0"><img class="img-fluid" src="/img/flight.jpg"></div>
+                            <div class="card-body">
+                                <div class="index-card-title card-title">Airlines</div>
+                                <div class="index-card-text card-text">Save money on airfare by searching for cheap flights and compares the flight deals on hundreds of airline tickets sites.</div>
+                            </div>
+                            <div class="card-footer"><a href="/flight" class="flight-card-btn btn btn-primary">Check Flights</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <div class="card">
+                            <div class="card-header px-0 py-0"><img class="img-fluid" src="/img/hotel.jpg"></div>
+                            <div class="card-body">
+                                <div class="index-card-title card-title">Hotels</div>
+                                <div class="index-card-text card-text">Browse the portfolio of hotels and discover what makes each brand unique. Take the stress out of travel & book your hotel.</div>
+                            </div>
+                            <div class="card-footer"><a href="/hotel" class="hotel-card-btn btn btn-primary">Check Hotels</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <div class="card">
+                            <div class="card-header px-0 py-0"><img class="img-fluid" src="/img/covid19.png"></div>
+                            <div class="card-body">
+                                <div class="index-card-title card-title">Covid-19</div>
+                                <div class="index-card-text card-text">The increased uncertainty is recognized from COVID-19 is causing around the world, check current info.</div>
+                            </div>
+                            <div class="card-footer"><a href="/covid19" class="cruise-card-btn btn btn-primary">Check Covid-19</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<%- include('partials/footer.ejs') %>

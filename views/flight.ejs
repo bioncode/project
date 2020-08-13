@@ -1,0 +1,160 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/checkout.ejs') %>
+    <div id="cart" class="d-flex justify-content-end mr-5">
+        <span class="items align-self-center mr-5 px-3"><span id="cart-item-count"><%= itemcount %></span> items &#128722;</span>
+    </div>
+    <!-- Modal for Adding/Removing Flights -->
+    <div>
+    <div class="modal fade" id="addFlightModal" tabindex="-1" role="dialog" aria-labelledby="addFlightModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addFlightModalLabel">Add Flight</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Selected flight:
+            <div class="card mx-5 my-1 px-3 py-1" data-toggle="modal" data-target="#addFlightModal">
+                <!-- Loaded dynamically -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" data-action="add" data-dismiss="modal">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div> 
+    <!-- Modal for Redirecting to Login -->
+    <div>
+    <%- include("partials/modal.ejs") %>
+    </div> 
+    <!-- Flights Page Content -->
+        <div class="row">
+            <div class="col-4 mb-5" id="flightCol1">
+            <form>
+                <!-- Search Box -->
+                <section id="search" class="section ml-5 mb-5 p-3 bg-primary text-white">
+                    
+                    <div class="d-inline-block">
+                        <h6 class="d-inline">Search</h6><br>
+                        <div class="d-inline">
+                            
+                            <label for="roundtrip" class="d-inline mr-2 text-nowrap">
+                                <input type="radio" class="d-inline ml-2" id="roundtrip" name="triptype" value="roundtrip"  <% if (roundtrip) { %> checked <% } %> >
+                                Round Trip
+                            </label>
+                            
+                            <label for="oneway" class="d-inline mr-2 text-nowrap">
+                                <input type="radio" class="d-inline ml-2" id="oneway" name="triptype" value="oneway"  <% if (!roundtrip) { %> checked <% } %>>
+                                One-way
+                            </label><br>
+                        </div>
+                        <div class="row  mb-n2">
+                            <label for="departLoc" class="col">Depart:</label>
+                            <label for="arriveLoc" class="col">Arrive:</label>
+                        </div>
+                        <div class="row">
+                            <input list="airports" class="col mx-3 mb-3 mt-0 form-control" name="departLoc" id="departLoc" value="<%= departLoc %>">
+                            <input list="airports" class="col mx-3 mb-3 mt-0 form-control" name="arriveLoc" id="arriveLoc" value="<%= arriveLoc %>">
+                                <datalist id="airports">
+                                  <option value="BOM" label="Mumbai">
+                                  <option value="DFW" label="Dallas">
+                                  <option value="FCO" label="Rome">
+                                  <option value="GIG" label="Rio de Janeiro">
+                                  <option value="HND" label="Tokyo">
+                                  <option value="JFK" label="New York">
+                                  <option value="LAX" label="Los Angeles">
+                                  <option value="ORD" label="Chicago">
+                                  <option value="PHL" label="Philadelphia">
+                                  <option value="RKV" label="Reykjavik">
+                                  <option value="SFO" label="San Francisco">
+                                  <option value="SIN" label="Singapore">
+                                </datalist>
+                        </div>
+                        
+                        <label for="departDate">Depart Date:</label>
+                        <input type="date" class="w-60" name="departDate" id="departDate" value="<%= departDate %>"><br>
+                        <!-- Use roundtrip class as search criteria for hiding return date if one-way selected-->
+                        <div <% if (!roundtrip) { %> hidden <% } %> >
+                        <label for="returnDate">Return Date:</label>
+                        <input type="date" class="w-60" name="returnDate" id="returnDate" value="<%= returnDate %>"><br>
+                        </div>
+                        
+                        <!-- Form submit -->
+                        <input type="submit" value="Search" class="btn btn-secondary mx-2 my-2" id="searchfn">
+                    </div>
+                </section>
+                <!-- Filter Box -->
+                <div id="filter">
+                    <div id="filter-btns" class="bg-primary ml-5 p-3 text-white">
+                        <h6 class="d-inline">Filter</h6>
+                        <span class="float-right">
+                            <button type="button" class="btn btn-secondary btn-sm px-2 py-0" id="filterBtn">Apply</button>
+                            <button type="button" class="btn btn-secondary btn-sm px-2 py-0" id="clearfilterbtn">Clear All</button>
+                        </span>
+                    </div>
+                    <div class="border border-primary ml-5 px-3 py-1">
+                        <!-- Budgets section -->
+                        Budget<br>
+                        <input type="checkbox" id="price-range1" name="price" value="0-150"  <% if (price.includes("0-150")) { %> checked <% } %>>
+                        <label for="price-range1">$0 - $150</label><br>
+                        <input type="checkbox" id="price-range2" name="price" value="150-350"  <% if (price.includes("150-350")) { %> checked <% } %>>
+                        <label for="price-range2">$150 - $350</label><br>
+                        <input type="checkbox" id="price-range3" name="price" value="350-550" <% if (price.includes("350-550")) { %> checked <% } %>>
+                        <label for="price-range3">$350 - $550</label><br>
+                        <input type="checkbox" id="price-range4" name="price" value="550+" <% if (price.includes("550+")) { %> checked <% } %>>
+                        <label for="price-range4">$550+</label><br>
+                    </div>
+                    <div class="border border-primary ml-5 px-3 py-1">
+                        <!-- Stops section -->
+                        Stops<br>
+                        <input type="checkbox" id="nonstop" name="stops" value="0" <% if (stops.includes("0")) { %> checked <% } %>>
+                        <label for="nonstop">Nonstop</label><br>
+                        <input type="checkbox" id="1stop" name="stops" value="1" <% if (stops.includes("1")) { %> checked <% } %>>
+                        <label for="1stop">1 Layover</label><br>
+                        <input type="checkbox" id="2stop" name="stops" value="2" <% if (stops.includes("2")) { %> checked <% } %>>
+                        <label for="2stop">2 Layovers</label><br>
+                    </div>
+                    <div class="border border-primary ml-5 px-3 py-1">
+                        <!-- Time of day section: This is the time it leaves -->
+                        Time of Day<br>
+                        <input type="checkbox" id="am" name="times" value="am" <% if (times.includes("am")) { %> checked <% } %>>
+                        <label for="am">AM</label><br>
+                        <input type="checkbox" id="pm" name="times" value="pm" <% if (times.includes("pm")) { %> checked <% } %>>
+                        <label for="pm">PM</label><br>
+                        <input type="checkbox" id="redeye" name="times" value="redeye" <% if (times.includes("redeye")) { %> checked <% } %>>
+                        <label for="redeye">Redeye</label><br>
+                    </div>
+                </div>
+                </form>
+            </div><!-- end column 1 -->
+            <div class="col-7" id="col2">
+                <div id="flights">
+                    <div class="bg-primary mr-1 p-3 text-white">
+                        <a class="text-white" data-toggle="collapse" href="#departingflights" aria-expanded="true" aria-controls="departingflights">Departing Flights: </a>
+                        <span class="float-right" ><%= departRows.length %> Search Results</span>
+                    </div>
+                    <div class="collapse show" id="departingflights">
+                    <!-- filled dynamically on page load -->
+                    <% departRows.forEach(function(row) { %>
+                    <%- include("partials/flight_card", {"row": row}) %>
+                    <% }); %>
+                    </div>
+                    <br>
+                    <div class="bg-primary mr-1 p-3 text-white" id="showRetr" <% if (!roundtrip) { %> hidden <% } %>>
+                        <a class="text-white" data-toggle="collapse" href="#returningflights" aria-expanded="true" aria-controls="returningflights">Returning Flights: </a>
+                        <span class="float-right"><%= returnRows.length %> Search Results</span>
+                    </div>
+                    <div class="collapse show" id="returningflights">
+                    <% returnRows.forEach(function(row) { %>
+                    <%- include("partials/flight_card", {"row": row}) %>
+                    <% }); %>
+                    </div>
+                </div>
+            </div><!-- end col2 -->
+        </div>
+<%- include('partials/footer.ejs') %>

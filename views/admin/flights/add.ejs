@@ -1,0 +1,78 @@
+<%- include('../partials/header.ejs') -%>
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Add Flight</h1>
+        <div id="content">
+            <form method="POST" class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="">Number</label>
+                        <input type="text" class="form-control" id="" name="flight_num" value="" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="">Airline</label>
+                        <input type="text" class="form-control" id="" name="airline" value="" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="">Layovers</label>
+                        <input type="text" class="form-control" id="" name="layovers" value="" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="">Price</label>
+                        <input type="text" class="form-control" id="" name="price" value="" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label >Departure time</label>
+                        <div class="input-group" id="datetimepicker1" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" name="departure_timestamp" required>
+                            <div class="input-group-append" data-target="#datetimepicker1"  data-toggle="datetimepicker">
+                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                            </div>
+                            <div class="invalid-feedback">Invalid value</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Arrival time</label>
+                        <div class="input-group" id="datetimepicker2" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2"
+                                name="arrival_timestamp" required>
+                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                            </div>
+                            <div class="invalid-feedback">Invalid value</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="">Duration</label>
+                        <input type="text" class="form-control" id="" name="duration" value="" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="">Departure airport</label>
+                        <input type="text" class="form-control" id="" name="departure_airport" value="" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="">Arrival airport</label>
+                        <input type="text" class="form-control" id="" name="arrival_airport" value="" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success"><i class="far fa-save"></i> Save</button>
+            </form>
+        </div>
+    </div>
+</main>
+<%- include('../partials/footer.ejs') -%>

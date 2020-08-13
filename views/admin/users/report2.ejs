@@ -1,0 +1,89 @@
+<h4>Aggr. Report</h4>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>User</th>
+                <th>Type</th>
+                <th>Total Price</th>
+                <th>Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(function(d, indx){ %>
+            <tr>
+                <th class="thead-dark"><%= indx + 1 %></th>
+                <td>
+                    <%= d.firstname %> <%= d.lastname %> @<%= d.username %>
+                </td>
+                <td>
+                    <% if (d.type == 0 ) { %>
+                    Flight
+                    <% } %>
+                    <% if (d.type == 1 ) { %>
+                    Hotel
+                    <% } %>                   
+                </td>
+                <td>
+                    <%= d.sum_price1 + d.sum_price2 %>
+                </td>
+                <td>
+                    <%= d.sum_paid %>
+                </td>                
+            </tr>
+            <% }); %>
+        </tbody>
+
+    </table>
+</div>
+<br>
+<br>
+<div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Flights</th>
+                <th>Hotels</th>
+            </tr>
+            <tr>
+                <th>#</th>
+                <th>User</th>
+                <th>Price / Paid</th>
+                <th>Price / Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+           <% let i = 0 %>
+            <%  for (const key in users) { %>
+            <tr>
+                <th class="thead-dark"><%= i++ %></th>
+                <td>
+                    <%= users[key][0].firstname %> <%= users[key][0].lastname %> @<%= users[key][0].username %>
+                </td>
+                <% users[key].forEach(function(d, indx){ %>
+                    
+                    <% if (d.type == 0) { %>
+                        <td>
+                            <%= (d.sum_price1 + d.sum_price2) || 0 %> / <%= d.sum_paid || 0 %>
+                        </td>
+                    <%  } %>
+                    <% if (d.type == 1) { %>
+                        <td>
+                            <%= (d.sum_price1 + d.sum_price2) || 0 %> /
+                            <%= d.sum_paid || 0 %>
+                        </td>
+                    <%  } %>
+                
+                <% }); %>
+
+            </tr>
+            <%  } %>
+        </tbody>
+
+    </table>
+</div>

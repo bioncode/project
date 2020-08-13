@@ -1,0 +1,18 @@
+<!-- Login section with Checkout button -->
+        <section class="section" id="home">
+            <div class="row">
+                <div class="col-md">
+                <div class="d-flex justify-content-end mr-5">
+                    <div id="navigation_buttom">
+                        <% if (authenticated) { %>
+                            <a class="btn btn-logout btn-primary mx-2 my-2" href="/logout" role="button">Logout</a>
+                            <a class="btn btn-account btn-primary mx-2 my-2" href="/myAccount" role="button">My Account</a>
+                        <% } else { %>
+                            <a class="btn btn-login btn-primary mx-2 my-2" href="/login" role="button">Login</a>
+                        <% } %>
+                        <a class="btn btn-secondary mx-2 my-2" href="/checkout" type="button">Checkout</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section> 

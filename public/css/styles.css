@@ -1,0 +1,49 @@
+.navbar-brand {
+    font-family: 'Muli', cursive;
+}
+
+.navbar-brand-big {
+    font-family: 'Muli', cursive;
+}
+
+.index-header, .index-card-title .about-title {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.about-title {
+    font-size: 2em;
+}
+
+.index-card-text .about {
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.w-60 {
+    width: 60%;
+}
+
+.gold {
+    color: gold;
+}
+
+#flightCol1, #hotelCol1, #search {
+    min-width: 200px;
+}
+
+#filter {
+    min-width: 250px;
+}
+
+#col2 {
+    min-width: 400px;
+}
+
+.text-shrunk {
+    font-size: 0.8rem;
+}

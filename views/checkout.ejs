@@ -1,0 +1,67 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/login.ejs') %>
+        <div class="container my-5">
+            <h1 class="">Checkout</h1>
+            <div class="container .table-responsive-md">
+                <h2>Reservations (Unpaid) </h2>
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Start</th>
+                            <th class="text-center">End</th>
+                            <th class="text-center">Type</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% items.forEach(function(item) { if (item.paid == null) { %>
+                            <tr>
+                                <td class="text-center align-middle"><%= item.title %></td>
+                                <td class="text-center align-middle">
+                                    <% if (item.start_datetime) { %>
+                                        <%= (new Date(item.start_datetime)).toDateString() %>
+                                    <% } %>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <% if (item.end_datetime) { %>
+                                        <%= (new Date(item.end_datetime)).toDateString() %>
+                                    <% } %>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <% if (item.type == 0) { %>Flight<% } else { %>Hotel<% } %>
+                                </td>
+                                <td class="text-right align-middle"><%= item.price.toFixed(2) %></td>
+                                <td class="text-center align-middle"><button class="btn btn-danger btn-remove btn-sm" type="button" value="<%= item.id %>">REMOVE</button></td>
+                            </tr>
+                        <% } });%>
+                        <tr>
+                            <td class="text-center align-middle"></td>
+                            <td class="text-center align-middle"></td>
+                            <td class="text-center align-middle"></td>
+                            <td class="text-center align-middle">Total</td>
+                            <td id="reservation-total" class="text-right align-middle"><%= total.toFixed(2) %></td>
+                            <td class="text-center align-middle"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <% if (total > 0) { %>
+                <div class="d-flex justify-content-end">
+                    <input class="align-self-center mx-2" id="accept" type="checkbox" name="accept"/>
+                    <label class="align-self-center mx-2" id="accept-label" for="accept">I accept the terms of this purchase.</label>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <label class="mx-2 my-2" id="sign-label" for="sign-text">E Signature: </label>
+                    <input class="mx-2 my-2" type="text" id="sign-text" name="sign-text">
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" id="checkout-button" class="btn btn-primary mx-2 my-2">Checkout</button>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <h3 id="success" class="text-success mx-2 my-2">Thank you for your purchase!</h3>
+                </div>
+            <% }%>
+        </div>
+<%- include('partials/footer.ejs') %>

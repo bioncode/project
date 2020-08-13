@@ -1,0 +1,15 @@
+<%- include('../partials/header.ejs') %>
+
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Users Reports</h1>
+        <div id="content">
+
+            <%- include('report1.ejs', { data: report }) %>
+            <%- include('report2.ejs', { data: report2, users: users }) %>
+
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>

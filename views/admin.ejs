@@ -1,0 +1,75 @@
+<%- include('admin/partials/header.ejs') %>
+            
+            <main>
+                <div class="container-fluid">
+                    <h1 class="mt-4">Administration Page</h1>
+                    <!-- <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Administration Page </li>
+                    </ol> -->
+                    <div id="content">
+                        <div class="accordion">
+
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                                            data-target="#users-report" aria-expanded="true" aria-controls="users-report">
+                                            Available Users
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="users-report" class="collapse">
+                                    <div class="card-body">
+                                        <%- include('admin/users/report1.ejs', { data: report5 }) %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                            data-target="#flights-report" aria-expanded="true" aria-controls="flights-report">
+                                            Flights reports
+                                        </button>
+                                    </h2>
+                                </div>
+                        
+                                <div id="flights-report" class="collapse">
+                                    <div class="card-body">
+
+                                        <%- include('admin/flights/report4.ejs', { data: report4, dtm: dtm }) %>
+
+                                        <%- include('admin/flights/report1.ejs', { data: report1 }) %>
+                                        
+                                        <%- include('admin/flights/report2.ejs', { data: report2 }) %>
+                                        
+                                        <%- include('admin/flights/report3.ejs', { data: report3 }) %>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                                            data-target="#hotels-report" aria-expanded="true" aria-controls="hotels-report">
+                                            Hotels reports
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="hotels-report" class="collapse">
+                                    <div class="card-body">
+                                        <%- include('admin/hotels/report2.ejs', { data: hreport2 }) %>
+
+                                        <%- include('admin/hotels/report1.ejs', { data: hreport1 }) %>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+<%- include('admin/partials/footer.ejs') %>

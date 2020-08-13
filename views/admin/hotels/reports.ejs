@@ -1,0 +1,19 @@
+<%- include('../partials/header.ejs') %>
+
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Hotels Reports</h1>
+        <!-- <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Administration Page </li>
+                    </ol> -->
+        <div id="content">
+
+            <%- include('report2.ejs', { data: report2 }) %>
+
+            <%- include('report1.ejs', { data: report1 }) %>
+
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>

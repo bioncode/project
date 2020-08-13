@@ -1,0 +1,110 @@
+<%- include('../partials/header.ejs') -%>
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Edit Hotel #<%= hotel.id %></h1>
+        <div id="content">
+            <% if (success == 0) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= message %>
+            </div>
+            <% } %>
+            <% if (success == 1) { %>
+            <div class="alert alert-success" role="alert">
+                <%= message %>
+            </div>
+            <% } %>
+            <form method="POST" class="needs-validation" novalidate>
+                <div class="form-row">
+                    
+                    <div class="form-group col-md-6">
+                        <label for="">Name</label>
+                        <input type="text" class="form-control" name="name" value="<%= hotel.name %>" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="">Street Address</label>
+                        <input type="text" class="form-control" name="street_address" value="<%= hotel.street_address %>" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="">City</label>
+                        <input type="text" class="form-control" name="city" value="<%= hotel.city %>" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="">State</label>
+                        <input type="text" class="form-control" name="state" value="<%= hotel.state %>" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="">Price</label>
+                        <input type="text" class="form-control" name="price" value="<%= hotel.price %>" required>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Stars</label>
+                        <select class="form-control" name="stars">
+                            <option value="1" <% if (hotel.stars == 1) { %> selected="selected" <% } %> >1</option>
+                            <option value="2" <% if (hotel.stars == 2) { %> selected="selected" <% } %> >2</option>
+                            <option value="3" <% if (hotel.stars == 3) { %> selected="selected" <% } %> >3</option>
+                            <option value="4" <% if (hotel.stars == 4) { %> selected="selected" <% } %> >4</option>
+                            <option value="5" <% if (hotel.stars == 5) { %> selected="selected" <% } %>>5</option>
+                        </select>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>Free Wifi</label>
+                        <select class="form-control" name="free_wifi">
+                            <option <% if (hotel.free_wifi == 1) { %> selected="selected" <% } %> value="1">Yes</optionvalue>
+                            <option <% if (hotel.free_wifi == 0) { %> selected="selected" <% } %> value="0">No</option>
+                        </select>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Free Parking</label>
+                        <select class="form-control" name="free_parking">
+                            <option <% if (hotel.free_parking == 1) { %> selected="selected" <% } %> value="1">Yes</option>
+                            <option <% if (hotel.free_parking == 0) { %> selected="selected" <% } %> value="0">No</option>
+                        </select>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Airport shuttle</label>
+                        <select class="form-control" name="airport_shuttle">
+                            <option <% if (hotel.airport_shuttle == 1) { %> selected="selected"= <% } %> value="1">Yes</option>
+                            <option <% if (hotel.airport_shuttle == 0) { %> selected="selected"= <% } %> value="0">No</option>
+                        </select>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Swimming Pool</label>
+                        <select class="form-control" name="swimming_pool">
+                            <option <% if (hotel.swimming_pool == 1) { %> selected="selected"= <% } %> value="1">Yes</option>
+                            <option <% if (hotel.swimming_pool == 0) { %> selected="selected"= <% } %> value="0">No</option>
+                        </select>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Fitness Center</label>
+                        <select class="form-control" name="fitness_center">
+                            <option <% if (hotel.fitness_center == 1) { %> selected="selected"= <% } %> value="1">Yes</option>
+                            <option <% if (hotel.fitness_center == 0) { %> selected="selected"= <% } %> value="0">No</option>
+                        </select>
+                        <div class="invalid-feedback">Invalid value</div>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-success"><i class="far fa-save"></i> Save</button>
+            </form>
+        </div>
+    </div>
+</main>
+<%- include('../partials/footer.ejs') -%>

@@ -1,0 +1,20 @@
+<div class="card m-5 px-3 py-1" data-hotel="<%= row.name %>" data-toggle="modal" data-target=<% if (authenticated) { %> "#addHotelModal" <% } else { %> "#plzLoginModal"<% } %> >
+    <div class="card-body">
+        <span class="float-right font-weight-bold">
+            $<%= row.price %>/night
+        </span>
+        <span class="numOfStops text-primary font-weight-bold text-nowrap">Holiday Inn</span>
+        <span class="gold text-nowrap"><% for (let i = 1; i <= 5; i++) { if (i <= row.stars) { %>&#9733; <% } else { %> &#9734; <% }} %> </span>
+        <br><%= row.street_address %> <%= row.city %>, <%= row.state %><br>
+        <span class="text-muted text-shrunk">
+            <% let lst = [];
+            if (row.free_wifi) lst.push("Free Wifi");
+            if (row.free_parking) lst.push("Free Parking");
+            if (row.airport_shuttle) lst.push("Airport Shuttle");
+            if (row.swimming_pool) lst.push("Swimming Pool");
+            if (row.fitness_center) lst.push("Fitness Center");
+            %>
+            <%= lst.join(", ") %>
+        </span>
+    </div>
+</div>

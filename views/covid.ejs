@@ -1,0 +1,83 @@
+<%- include('partials/header.ejs') %>
+<section class="section mb-5" id="main">
+        <h3 class="index-header text-md text-center my-4">Coronavirus (Covid-19) Information</h3>
+        <hr>
+        <div id="accordion">
+            <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Flight Policies
+                </button>
+              </h5>
+            </div>
+            
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                Due to the pandemic, all passengers will be required to wear face masks in airports and on board flights.
+                For your safety, we are committed to keeping you up-to-date on the latest policies of our partner airlines. 
+                To see which are committed to limited capacity flights and no-fee rebookings, please see the table below:
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Airline</th>
+                            <th scope="col">Capacity Limit</th>
+                            <th scope="col">Rebooking Fees</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>United Airlines</td><td>100%</td><td>Yes</td></tr>
+                        <tr><td>Alaska Airlines</td><td>80%</td><td>No</td></tr>
+                        <tr><td>Southwest Airlines</td><td>60%</td><td>No</td></tr>
+                    </tbody>
+                </table>
+                Last updated: July 27
+              </div>
+            </div>
+            </div>
+            <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Hotel Policies
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+               <h6>General Policies: </h6>All guests will be required to wear masks while in public areas including the lobby, 
+               elevators, and hallways. Unfortunately, last minute booking cancelations cannot be refunded.
+               <br><br>
+               <h6>The Hospitality Industry is Stepping Up: </h6>
+               Worried you may need to see a doctor during your stay? Don’t worry! 
+               Half our rooms have been converted to a covid-19 hospital ward by local hospitals. 
+               A doctor is only a few floors away! <br>Participating Hotel Chains: 
+                <ul>
+                    <li>US: Hilton, Marriott, Hyatt, Choice Hotels</li>
+                    <li>UK: Best Western, Travelodge, Hilton</li>
+                    <li>Madrid: Ayre Gran Hotel Colón</li>
+                    <li>EU: Accor</li>
+                </ul>
+              </div>
+            </div>
+            </div>
+            <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Cruise Policies
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                All passengers will be required to wear face masks and hazmat suits.
+                For your safety, anyone who coughs will be thrown overboard.
+                All rooms have been fitted with a decontamination chamber, and HEPA filters have been added to all air filter systems.
+              </div>
+            </div>
+            </div>
+            </div>
+                
+</section>
+<%- include('partials/footer.ejs') %>

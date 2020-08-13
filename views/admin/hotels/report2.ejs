@@ -1,0 +1,80 @@
+<h4>Hotels Reservations</h4>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Name (Username)</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Paid</th>
+                <th>Start time</th>
+                <th>End time</th>
+                <th>Name</th>
+                <th>Street Address</th>
+                <th>City, State</th>
+                <th>Price</th>
+                <td>Stars</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (data.length) { %>
+            <% data.forEach(function(d, indx){ %>
+            <tr>
+                <th class="thead-dark"><%= indx + 1 %></th>
+                <td>
+                    <%= d.title %>
+                </td>
+                <td>
+                    <%= d.firstname %> <%= d.lastname %> (<%= d.username %>)
+                </td>
+                <td>
+                    <%= d.age %>
+                </td>
+                <td>
+                    <%= d.phone %>
+                </td>
+                <td>
+                    <%= d.email %>
+                </td>
+                <td>
+                    <%= d.address %>
+                </td>
+                <td>
+                    <%= d.paid %>
+                </td>
+                <td>
+                    <%= dtm(d.start_datetime) %>
+                </td>
+                <td>
+                    <%= dtm(d.end_datetime) %>
+                </td>
+                <td>
+                    <%= d.name %>
+                </td>
+                <td>
+                    <%= d.street_address %>
+                </td>
+                <td><%= d.city %>, <%= d.state %></td>
+                <td>
+                    <%= d.price %>
+                </td>
+                <td>
+                    <%= d.stars %>
+                </td>
+            </tr>
+            <% }); %>
+            <% } %>
+            <% if (data.length == 0) { %>
+            <tr>
+                <td colspan="11" class="text-center">No hotel reservations found</td>
+            </tr>
+            <% } %>
+        </tbody>
+
+    </table>
+</div>

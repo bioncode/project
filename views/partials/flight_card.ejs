@@ -1,0 +1,14 @@
+<div class="card mx-5 my-1 px-3 py-1" data-airline="<%= row.airline %>" data-start="<%= row.departure_datetime %>" data-end="<%= row.arrival_datetime %>" data-flight="<%=row.flight_num %>" data-toggle="modal" data-target=<% if (authenticated) { %> "#addFlightModal" <% } else { %> "#plzLoginModal"<% } %> >
+    <div class="card-body">
+        <span class="numOfStops text-primary font-weight-bold"><%= row.layovers.slice(0,1) %> Stop </span>
+        Flight #<span class="flightNum"><%=row.flight_num %> </span>
+        <span class="airline text-nowrap">&#9992; <%=row.airline %> </span>
+        <span class="price float-right font-weight-bold">$<%=row.price %></span><br>
+        <span class="flight-times text-secondary font-weight-bold text-nowrap">
+            <%= Intl.DateTimeFormat([], {timeStyle: "short", timeZone: "UTC", "hour": "numeric", "minute": "2-digit"}).format(new Date(row.departure_datetime)).toLowerCase() %> - 
+            <%= Intl.DateTimeFormat([], {timeStyle: "short", timeZone: "UTC", "hour": "numeric", "minute": "2-digit"}).format(new Date(row.arrival_datetime)).toLowerCase() %></span><br>
+        <span class="airport-names text-nowrap"><%=row.departure_airport %> - <%=row.arrival_airport %></span> | 
+        <span class="flight-length text-nowrap"><%=row.duration %></span> | 
+        <span class="stops-length text-nowrap"><%=row.layovers %></span>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<h4>Total Price by Departure airport</h4>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Departure Airport</th>
+                <th>Total Price</th>
+                <th>Min Price</th>
+                <th>Max Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(function(d, indx){ %>
+            <tr>
+                <th class="thead-dark"><%= indx + 1 %></th>
+                <td>
+                    <%= d.departure_airport %>
+                </td>
+                <td>
+                    <%= d.total_price %>
+                </td>
+                <td>
+                    <%= d.min_price %>
+                </td>
+                <td>
+                    <%= d.max_price %>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+
+    </table>
+</div>
