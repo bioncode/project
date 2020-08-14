@@ -78,7 +78,7 @@ app.get("/hotel", async function(req, res) {
     }
     //handle hotel search values
     let city = req.query.city || "Philadelphia";
-    let state = req.query.state || "PA";
+    let state = req.query.state || "Pennsylvania";
     let startime = req.query.checkinDate || "2020-08-17";
     let endtime = req.query.checkoutDate || "2020-08-19";
     //handle filter values
@@ -284,7 +284,7 @@ app.get("/admin/flights", isAuthenticated, function (req, res) {
         message = req.session.deleting_status.message;
         delete (req.session.deleting_status);
     }
-    pool.query("SELECT * FROM flights", function (err, data) {
+    pool.query("SELECT * FROM flights LIMIT 2000", function (err, data) {
         if (err) return console.log(err);
         res.render("admin/flights/index.ejs", {
             flights: data,
@@ -641,36 +641,38 @@ app.post("/api/updateReservation", function(req, res) {
     let type = req.body.type; //"flight" or "hotel"
     let start = req.body.start;
     let end = req.body.end;
+    let flightid = req.body.flightid;
+    let hotelid = req.body.hotelid;
+    console.log("id: ", hotelid);
     let sql = "";
     let sqlParams = [];
     if (action == "add") {
         if (type == "flight") {
             sql = "INSERT INTO `reservations` ( `title`, `user_id`, `type`, `start_datetime`, `end_datetime`, `flight_id`) " +
-            'VALUES (?, (SELECT `id` FROM `users` WHERE `username` = ?), ' +
-            "0, ?, ?, (SELECT `id` FROM `flights` WHERE `flight_num` = ?))";
-            sqlParams.push(req.body.title, req.session.username, start, end, req.body.flightNum);
+            "VALUES (?, (SELECT `id` FROM `users` WHERE `username` = ?), 0, ?, ?, ?)";
+            sqlParams.push(req.body.title, req.session.username, start, end, flightid);
         } else {
             sql = "INSERT INTO `reservations` (`title`, `start_datetime`, `end_datetime`, `type`, `paid`, `user_id`, `hotel_id`, `flight_id`) " +
-            "VALUES (?, ?, ?, ?, ?, (SELECT `id` FROM `users` WHERE `username` = ?), (SELECT `id` FROM `hotels` WHERE `name` = ?), ?)";
-            sqlParams.push(req.body.hotel, start, end, 1, null, req.session.username, req.body.hotel, null);
+            "VALUES (?, ?, ?, ?, ?, (SELECT `id` FROM `users` WHERE `username` = ?), ?, ?)";
+            sqlParams.push(req.body.hotel, start, end, 1, null, req.session.username, hotelid, null);
         }
     } else { //REMOVE
         sql = "DELETE FROM `reservations` " +
         'WHERE `user_id` =  (SELECT `user_id` FROM `users` WHERE `username` = ?) ';
         sqlParams.push(req.session.username);
         if (type == "flight") {
-            sql += "AND `flight_id` = (SELECT `id` FROM `flights` WHERE `flight_num` = ?)";
-            sqlParams.push(req.body.flightNum);
+            sql += "AND `flight_id` = ?";
+            sqlParams.push(flightid);
         } else {//hotels
-            sql += "AND `hotel_id` = (SELECT `id` FROM `hotels` WHERE `name` = ?) ";
-            sqlParams.push(req.body.hotel);
+            sql += "AND `hotel_id` = ? ";
+            sqlParams.push(hotelid);
         }
     }
-    // console.log("sql: ", sql);
-    // console.log("sqlparams: ", sqlParams);
+    console.log("sql: ", sql);
+    console.log("sqlparams: ", sqlParams);
     pool.query(sql, sqlParams, function (err, results, fields) {
        if (err) throw err;
-    //   console.log(results); //for debugging purposes
+      console.log(results); //for debugging purposes
        res.send(results);
     });
 });//api/updateReservation
@@ -817,7 +819,7 @@ function getFlightInfo(departDate, departLoc, arriveLoc, filters, filterVariable
     return new Promise (function(resolve,reject) {
         pool.query(sql, sqlParams, function (err, rows, fields) {
            if (err) throw err;
-        //   console.log(rows); //for debugging purposes
+           console.log(rows); //for debugging purposes
            resolve(rows);
         });//query
     });//promise

@@ -1,4 +1,4 @@
-<div class="card m-5 px-3 py-1" data-hotel="<%= row.name %>" data-toggle="modal" data-target=<% if (authenticated) { %> "#addHotelModal" <% } else { %> "#plzLoginModal"<% } %> >
+<div class="card m-5 px-3 py-1" data-hotel="<%= row.name %>" data-hotelid="<%= row.id %>" data-toggle="modal" data-target=<% if (authenticated) { %> "#addHotelModal" <% } else { %> "#plzLoginModal"<% } %> >
     <div class="card-body">
         <span class="float-right font-weight-bold">
             $<%= row.price %>/night

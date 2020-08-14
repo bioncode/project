@@ -1,4 +1,4 @@
-<div class="card mx-5 my-1 px-3 py-1" data-airline="<%= row.airline %>" data-start="<%= row.departure_datetime %>" data-end="<%= row.arrival_datetime %>" data-flight="<%=row.flight_num %>" data-toggle="modal" data-target=<% if (authenticated) { %> "#addFlightModal" <% } else { %> "#plzLoginModal"<% } %> >
+<div class="card mx-5 my-1 px-3 py-1" data-airline="<%= row.airline %>" data-start="<%= row.departure_datetime %>" data-end="<%= row.arrival_datetime %>" data-flightid="<%= row.id %>" data-flight="<%=row.flight_num %>" data-toggle="modal" data-target=<% if (authenticated) { %> "#addFlightModal" <% } else { %> "#plzLoginModal"<% } %> >
     <div class="card-body">
         <span class="numOfStops text-primary font-weight-bold"><%= row.layovers.slice(0,1) %> Stop </span>
         Flight #<span class="flightNum"><%=row.flight_num %> </span>

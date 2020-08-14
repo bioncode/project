@@ -63,9 +63,37 @@
                 <section id="search" class="section ml-5 mb-5 p-3 bg-primary text-white">
                     <h6 class="d-inline">Search</h6><br>
                     <label for="hotelLoc" class="mb-0">Location:</label><br>
-                    <input type="text" class="form-control mb-1" name="city" placeholder="City" value="<%= city %>"><br>
-                    <input type="text" class="form-control mb-3" name="state" placeholder="State" value="<%= state %>"><br>
-                    
+                    <input list="cities" class="form-control mb-1" name="city" placeholder="City" value="<%= city %>"><br>
+                    <input list="states" class="form-control mb-3" name="state" placeholder="State" value="<%= state %>"><br>
+                        <datalist id="cities">
+                          <option value="Mumbai">
+                          <option value="Dallas">
+                          <option value="Rome">
+                          <option value="Rio de Janeiro">
+                          <option value="Tokyo">
+                          <option value="New York">
+                          <option value="Los Angeles">
+                          <option value="Chicago">
+                          <option value="Denver">
+                          <option value="Philadelphia">
+                          <option value="Reykjavik">
+                          <option value="San Francisco">
+                          <option value="Singapore">
+                        </datalist>
+                        <datalist id="states">
+                          <option value="Brazil">
+                          <option value="India">
+                          <option value="Italy">
+                          <option value="Iceland">
+                          <option value="Japan">
+                          <option value="Singapore">
+                          <option value="Pennsylvania">
+                          <option value="Illinois">
+                          <option value="New York">
+                          <option value="California">
+                          <option value="Colorado">
+                          <option value="Texas">
+                        </datalist>
                         <label for="checkinDate" class="mb-0">Check-in:</label>
                         <input type="date" id="checkinDate" name="checkinDate" class="form-control mb-1" value="<%= startime %>">
                         <label for="checkoutDate" class="mb-0">Check-out:</label>

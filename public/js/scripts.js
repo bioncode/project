@@ -117,6 +117,8 @@ $(document).ready(function() {
         let airline = $(this).data("airline");
         let start = $(this).data("start");
         let end = $(this).data("end");
+        let id = $(this).data("flightid");
+        // console.log("flightid", id);
         start = new Date(start).toISOString().slice(0,19).replace("T", " ");//"yyyy-mm-dd hh:mm:ss"
         end = new Date(end).toISOString().slice(0,19).replace("T", " ");
         //update modal contents 
@@ -125,6 +127,7 @@ $(document).ready(function() {
         $("#addFlightModal .btn-primary").data("airline", airline);
         $("#addFlightModal .btn-primary").data("start", start);
         $("#addFlightModal .btn-primary").data("end", end);
+        $("#addFlightModal .btn-primary").data("flightid", id);
         //check if already selected and change modal to remove
         if ($(this).hasClass("border-primary")) {
             //change add btn to remove btn data-action and html text
@@ -139,11 +142,14 @@ $(document).ready(function() {
     
     $("#hotelResults").on("click", ".card", function() {
         let hotelName = $(this).data("hotel");
+        let hotelid = $(this).data("hotelid");
         let start = $("#checkinDate").val();
         let end = $("#checkoutDate").val();
+        console.log("hotelid", hotelid);
         //update modal contents 
         $("#addHotelModal .card").html($(this).html());
         $("#addHotelModal .btn-primary").data("hotel", hotelName);
+        $("#addHotelModal .btn-primary").data("hotelid", hotelid);
         $('#addHotelModal input[name="checkinDate"]').attr("value", start);
         $('#addHotelModal input[name="checkoutDate"]').attr("value", end);
         //check if already selected and change modal to remove
@@ -166,6 +172,8 @@ $(document).ready(function() {
         let flightNum = $(this).data("flight");
         let start = $(this).data("start");
         let end = $(this).data("end");
+        let id = $(this).data("flightid");
+        // console.log("id in btn", id);
        //add or remove flight to cart using AJAX call
        let action = $(this).data("action");
        let title = $(this).data("airline") + " Flight " + flightNum;
@@ -178,7 +186,8 @@ $(document).ready(function() {
                     "flightNum": flightNum,
                     "title": title,
                     "start": start,
-                    "end": end
+                    "end": end,
+                    "flightid": id
             },
             success: function(data, status) {
                 //todo: use results to alert if added successfully or not
@@ -192,15 +201,16 @@ $(document).ready(function() {
                 }
             }
         });//ajax
-       $(`#flights .card[data-flight="${flightNum}"]`).toggleClass("border-primary");
+       $(`#flights .card[data-flightid="${id}"]`).toggleClass("border-primary");
     });
     
     $("#addHotelModal .btn-primary").on("click", function() {
         let hotelName = $(this).data("hotel");
+        let hotelid = $(this).data("hotelid");
         let modalContents = $(this).parent().parent();
         let start = modalContents.find('input[name="checkinDate"]').val();
         let end = modalContents.find('input[name="checkoutDate"]').val();
-        //console.log("hotelName:", hotelName);
+        console.log("hotelid:", hotelid);
        //add or remove hotel to cart using AJAX call
        let action = $(this).data("action");
        //console.log("action", action);
@@ -211,6 +221,7 @@ $(document).ready(function() {
             data: {"type": "hotel",
                     "action": action,
                     "hotel": hotelName,
+                    "hotelid": hotelid,
                     "start": start + " 11:00:00", //default to 11am checkin
                     "end": end + " 11:00:00" //default to 11am checkout
             },
@@ -226,7 +237,7 @@ $(document).ready(function() {
                 }
             }
         });//ajax
-       $(`#hotels .card[data-hotel="${hotelName}"]`).toggleClass("border-primary");
+       $(`#hotels .card[data-hotelid="${hotelid}"]`).toggleClass("border-primary");
        $("#checkinDate").attr("value", start); //update search box if chose different dates in modal
        $("#checkoutDate").attr("value", end); //update search box if chose different dates in modal
     });
